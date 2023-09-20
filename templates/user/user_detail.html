@@ -1,0 +1,20 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>User: {{ user.username }}</h2>
+  <p>Email: {{ user.email }}</p>
+  <p>First Name: {{ user.first_name }}</p>
+  <p>Last Name: {{ user.last_name }}</p>
+
+  <h3>Assigned Tasks</h3>
+  <ul>
+    {% for task in user.task_set.all %}
+      <li>
+        <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+      </li>
+    {% empty %}
+      <li>No tasks assigned yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
